@@ -1,0 +1,65 @@
+import numpy as np
+
+
+
+l=[[100,'del','hel','5:30pm',20],
+  [101,'mumbai','london','6:30pm',55],
+  [102,'nyc','del','5:30am',22],
+  [103,'rome','milan','5:00am',0]]
+
+l2=[[123,'abc',100,2],
+   [124,'def',101,5],
+   [123,'ghi',103,2],
+   [103,'jkl',101,2],
+   [223,'mno',102,2],
+   [188,'pqr',101,1]]
+
+flight_schedule=np.array(l)
+passenger_det=np.array(l2)
+
+def findflight():
+    k=int(input("enetr passenger id:"))
+    for i in passenger_det:
+        if int(i[0])==k:
+            for j in flight_schedule:
+                if(int(i[2])==int(j[0])):
+                    print("departure from:", j[1])
+                    print('arrival at:',j[2])
+                    print("seats:", i[3])
+findflight()
+
+def route():
+    s=[]
+    for i in flight_schedule:
+        s.append(int(i[4]))
+
+    xmin=min(s)
+    
+    xmax=max(s)
+    for i in flight_schedule:
+       
+        if(int(i[4])==xmin):
+            print("min:",i)
+        if(int(i[4])==xmax):
+            print("max:",i)
+route()
+
+
+def availability():
+    for i in flight_schedule:
+        if(int(i[4])==0):
+            print('flights notavailable for \n',
+                 'flight id',i[0],
+                 '\n flight time:',i[3])
+            
+availability()
+
+def fupdate():
+    k=int(input('flight number youwant to update'))
+    s=int(input('updated seats:'))
+    for i in flight_schedule:
+        if(int(i[0])==k):
+            i[4]=str(s)
+    print(flight_schedule)
+fupdate()
+    
